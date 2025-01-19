@@ -1,18 +1,26 @@
-const link = document.querySelector("a");
-link.textContent = "Mozilla Developer Network";
-link.href = "https://developer.mozilla.org";
+const list = document.querySelector("ul");
+const input = document.querySelector("input");
+const btn = document.querySelector("button");
 
-const sect = document.querySelector("section");
-const para = document.createElement("p");
-para.textContent = "We hope you enjoyed the ride.";
-sect.appendChild(para);
+btn.addEventListener("click", whenClicked);
+function whenClicked(){
+    let value = input.value;
+    input.value = "";
 
-const text = document.createTextNode(
-  " — the premier source for web development knowledge."
-);
+    let li = document.createElement("li");
+    let span = document.createElement("span");
+    let button = document.createElement("button");
 
-const linkPara = document.querySelector("p");
-linkPara.appendChild(text);
+    li.appendChild(span);
+    li.appendChild(button);
 
-para.setAttribute("class", "highlight");
+    span.textContent = value;
+    button.textContent = "Delete";
+    list.appendChild(li);
 
+    button.addEventListener('click', () => {
+        li.remove();
+        input.focus();
+    })
+
+};
